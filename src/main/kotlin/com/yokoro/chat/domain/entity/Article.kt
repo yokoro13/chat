@@ -13,8 +13,8 @@ data class Article (
         var contents: String = "",
         @Column(name = "article_key")
         var articleKey: String = "",
-        @Column(name = "resister_at")
-        var resisterAt: Date = Date(),
+        @Column(name = "register_at")
+        var registerAt: Date = Date(),
         @Column(name = "update_at")
         var updateAt: Date = Date()
 )

@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
-
 
 
 @SpringBootTest
@@ -35,5 +33,15 @@ class ArticleControllerTests {
         )
                 .andExpect(status().isOk)
                 .andExpect(content().string("Saved"))
+    }
+
+    @Test
+    fun getArticleListTest(){
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/")
+        )
+                .andExpect(status().isOk)
+                .andExpect(model().attributeExists("articles"))
+                .andExpect(view().name("index"))
     }
 }

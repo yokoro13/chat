@@ -5,6 +5,8 @@ import com.yokoro.chat.domain.entity.Article
 import com.yokoro.chat.domain.repository.ArticleRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseBody
@@ -23,5 +25,11 @@ class ArticleController {
                 Article(0, articleRequest.name, articleRequest.title, articleRequest.contents, articleRequest.articleKey)
         )
         return "Saved"
+    }
+
+    @GetMapping("/")
+    fun getArticleList(model: Model): String{
+        model.addAttribute("articles", articleRepository.findAll())
+        return "index"
     }
 }
