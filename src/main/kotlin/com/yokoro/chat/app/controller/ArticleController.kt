@@ -18,13 +18,12 @@ class ArticleController {
     lateinit var articleRepository: ArticleRepository
 
     @PostMapping("/")
-    @ResponseBody
     // パラメータは自動で紐付けされる
     fun resisterArticle(@ModelAttribute articleRequest: ArticleRequest): String{
         articleRepository.save(
                 Article(0, articleRequest.name, articleRequest.title, articleRequest.contents, articleRequest.articleKey)
         )
-        return "Saved"
+        return "redirect:/"
     }
 
     @GetMapping("/")
